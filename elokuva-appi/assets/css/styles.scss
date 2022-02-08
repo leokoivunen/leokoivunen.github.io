@@ -69,6 +69,32 @@ body {
     }
   }
 
+  aside {
+    background-color: $third-color;
+    position: fixed;
+    padding: 1rem;
+    top: 5rem;
+    z-index: 1;
+    width: 100%;
+
+    ol {
+      float: left;
+      list-style-type: none;
+      display: inline-flex;
+
+      li {
+        margin: 0 .6rem;
+
+        a {
+          color: white;
+          background-color: rgb(119, 0, 255);
+          padding: .5rem .7rem;
+          border-radius: 80px;
+        }
+      }
+    }
+  }
+
   main {
     display: flex;
     flex-wrap: wrap;

@@ -82,6 +82,34 @@ body header form .search::placeholder {
   color: #7378c5;
 }
 
+body aside {
+  background-color: #1d2046;
+  position: fixed;
+  padding: 1rem;
+  top: 5rem;
+  z-index: 1;
+  width: 100%;
+}
+
+body aside ol {
+  float: left;
+  list-style-type: none;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+body aside ol li {
+  margin: 0 .6rem;
+}
+
+body aside ol li a {
+  color: white;
+  background-color: #7700ff;
+  padding: .5rem .7rem;
+  border-radius: 80px;
+}
+
 body main {
   display: -webkit-box;
   display: -ms-flexbox;

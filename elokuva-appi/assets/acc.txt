@@ -1,9 +1,0 @@
-https://www.themoviedb.org/settings/api
-
-user: testparwawa
-
-salasana: fkwafiwaiFJf
-
-yedopig398@porjoton.com
-
-API key: 54cfa8fd3e538287147c85dbc892b4da
