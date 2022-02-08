@@ -42,7 +42,7 @@ line-height: 25px;}
     .mean-container .mean-bar {
         margin-top: 0px;
     }
-    .text-bg h1 {
+    .text-bg h2 {
         font-size: 50px;
         line-height: 80px;
     }
@@ -105,7 +105,8 @@ ul.padding_left2 li img {padding: 0px 10px 0px 19px;}
 
 @media (max-width: 575px) {
     .head_top {
-       background: url(../images/banner.png);
+        background-image: linear-gradient(rgba(10, 10, 10, 0.61), rgb(10, 10, 10)),
+        url(../images/banner1.png);
     }
     .header {
         padding: 30px 0px 0px 0px;
@@ -115,7 +116,7 @@ ul.padding_left2 li img {padding: 0px 10px 0px 19px;}
         padding-bottom: 6px;
         float: left;
     }
-    .text-bg h1 {
+    .text-bg h2 {
         font-size: 33px;
         line-height: 51px;
     }
