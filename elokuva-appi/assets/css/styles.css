@@ -1,1 +1,138 @@
-/* No CSS *//*# sourceMappingURL=styles.css.map */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap");
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background-color: #22254b;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+}
+
+body header {
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  background-color: #373b69;
+}
+
+body header form .search {
+  background-color: transparent;
+  border: 2px solid #22254b;
+  padding: 0.5rem 0.5rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  color: white;
+  font-family: inherit;
+}
+
+body header form .search:focus {
+  outline: 0;
+  background-color: #22254b;
+}
+
+body header form .search::-webkit-input-placeholder {
+  color: #7378c5;
+}
+
+body header form .search:-ms-input-placeholder {
+  color: #7378c5;
+}
+
+body header form .search::-ms-input-placeholder {
+  color: #7378c5;
+}
+
+body header form .search::placeholder {
+  color: #7378c5;
+}
+
+body main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body main .movie {
+  width: 300px;
+  margin: 1rem;
+  border-radius: 3px;
+  -webkit-box-shadow: 0.2px 4px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0.2px 4px 5px rgba(0, 0, 0, 0.1);
+  background-color: #373b69;
+  overflow: hidden;
+  position: relative;
+}
+
+body main .movie img {
+  width: 100%;
+}
+
+body main .movie .movie-info {
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5rem 1rem;
+  letter-spacing: 0.5px;
+}
+
+body main .movie .movie-info h3 {
+  margin: 0;
+}
+
+body main .movie .movie-info span {
+  background-color: #22254b;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+}
+
+body main .movie .movie-info .green {
+  color: lightgreen;
+}
+
+body main .movie .movie-info .orange {
+  color: orange;
+}
+
+body main .movie .movie-info .red {
+  color: red;
+}
+
+body main .movie .overview {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  padding: 1rem;
+  max-height: 100%;
+  -webkit-transform: translateY(101%);
+          transform: translateY(101%);
+  -webkit-transition: -webkit-transform 0.3s ease-in;
+  transition: -webkit-transform 0.3s ease-in;
+  transition: transform 0.3s ease-in;
+  transition: transform 0.3s ease-in, -webkit-transform 0.3s ease-in;
+}
+
+body main .movie:hover .overview {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+/*# sourceMappingURL=styles.css.map */
