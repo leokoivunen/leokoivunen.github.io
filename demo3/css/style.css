@@ -51,49 +51,6 @@ a {
   transition: all 0.3s ease-in-out;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  letter-spacing: 0;
-  font-weight: normal;
-  position: relative;
-  padding: 0 0 10px 0;
-  font-weight: normal;
-  line-height: normal;
-  color: #111111;
-  margin: 0;
-}
-
-h1 {
-  font-size: 24px;
-  font-family: "Righteous", cursive;
-}
-
-h2 {
-  font-size: 22px;
-  font-family: "Righteous", cursive;
-}
-
-h3 {
-  font-size: 18px;
-  font-family: "Righteous", cursive;
-}
-
-h4 {
-  font-size: 16px;
-}
-
-h5 {
-  font-size: 14px;
-}
-
-h6 {
-  font-size: 13px;
-}
-
 *,
 *::after,
 *::before {
@@ -333,7 +290,7 @@ h1 {
 }
 
 .text-bg h2 {
-  font-family: 'Consolas', sans-serif;
+  font-family: "Consolas", sans-serif;
   text-transform: lowercase;
   color: #f4f7f6;
   font-size: 75px;
@@ -428,7 +385,8 @@ h3 {
   padding: 1px 30px 1px 1px;
 }
 
-.our_text_box, h3 {
+.our_text_box,
+h3 {
   font-size: 1.8rem !important;
 }
 
