@@ -91,6 +91,7 @@ body main {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin: 8rem 0;
 }
 
 body main .movie {
