@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 // Set primary and second color
 $primary-color: #22254b;
 $secondary-color: #373b69;
@@ -17,7 +21,10 @@ body {
   header {
     padding: 1rem;
     background-color: $secondary-color;
-
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
     .app-container {
       float: left;
       margin: -2rem 0;
@@ -129,7 +136,7 @@ body {
   }
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 600px) {
   body {
     header {
       .app-container {
@@ -140,5 +147,8 @@ body {
       }
     }
   }
-  
+}
+
+a {
+  text-decoration: none;
 }
