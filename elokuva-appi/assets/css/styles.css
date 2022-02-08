@@ -12,17 +12,39 @@ body {
 
 body header {
   padding: 1rem;
+  background-color: #373b69;
+}
+
+body header .app-container {
+  float: left;
+  margin: -2rem 0;
+}
+
+body header .app-container h1 {
+  font-size: 2.5rem;
+  color: #ececec;
+  text-shadow: -3px 3px 3px #1f1e1e;
+}
+
+body header .app-container span {
+  color: #9f82ee;
+}
+
+body header .app-container i {
+  color: #ececec;
+}
+
+body header form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  background-color: #373b69;
 }
 
 body header form .search {
-  background-color: transparent;
+  background-color: #22254b;
   border: 2px solid #22254b;
   padding: 0.5rem 0.5rem;
   border-radius: 50px;
@@ -33,7 +55,7 @@ body header form .search {
 
 body header form .search:focus {
   outline: 0;
-  background-color: #22254b;
+  background-color: #1d2046;
 }
 
 body header form .search::-webkit-input-placeholder {
@@ -134,5 +156,12 @@ body main .movie .overview {
 body main .movie:hover .overview {
   -webkit-transform: translateY(0);
           transform: translateY(0);
+}
+
+@media only screen and (max-width: 600px) {
+  body header .app-container h1 {
+    font-size: 1.5rem;
+    margin: 2.5rem 0;
+  }
 }
 /*# sourceMappingURL=styles.css.map */
