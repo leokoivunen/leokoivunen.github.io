@@ -332,7 +332,9 @@ h1 {
   text-align: left;
 }
 
-.text-bg h1 {
+.text-bg h2 {
+  font-family: 'Consolas', sans-serif;
+  text-transform: lowercase;
   color: #f4f7f6;
   font-size: 75px;
   line-height: 110px;
