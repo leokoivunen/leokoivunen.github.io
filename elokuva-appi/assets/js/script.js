@@ -6,6 +6,8 @@ const API_URL = BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY;
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 const SEARCH_URL = BASE_URL + "/search/movie?" + API_KEY;
 
+// Import GENRES
+// const genres = require('./genres.json');
 const genres = [
   {
     id: 28,
@@ -121,10 +123,26 @@ function setGenre() {
       }
       console.log(selectedGenre);
       getMovies(API_URL + "&with_genres=" + selectedGenre.join(","));
+      highlightSelection();
+
     });
 
     tagsEl.append(tags);
   });
+}
+
+function highlightSelection() {
+  const genres = document.querySelectorAll(".genre");
+  genres.forEach(genre => {
+    genre.classList.remove('highlight');
+  })
+
+  if (selectedGenre.length != 0) {
+    selectedGenre.forEach(id => {
+      const highlightedTag = document.getElementById(id);
+      highlightedTag.classList.add("highlight");
+    });
+  }
 }
 
 function getMovies(url) {
@@ -172,6 +190,7 @@ function getColor(vote) {
   }
 }
 
+// onSearch click
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 

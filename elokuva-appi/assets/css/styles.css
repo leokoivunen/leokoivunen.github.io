@@ -85,7 +85,7 @@ body header form .search::placeholder {
 body aside {
   background-color: #1d2046f1;
   position: fixed;
-  padding: .5rem;
+  padding: 0.5rem;
   top: 5rem;
   z-index: 1;
   display: -webkit-box;
@@ -117,9 +117,13 @@ body aside #genres .genre {
   color: white;
   background-color: #7700ff;
   padding: 10px 15px;
-  margin: .5rem 0.6rem;
+  margin: 0.5rem 0.6rem;
   border-radius: 50px;
   cursor: pointer;
+}
+
+body aside #genres .highlight {
+  background-color: #eead34;
 }
 
 body main {
