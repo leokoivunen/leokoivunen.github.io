@@ -63,7 +63,7 @@ body header form .search {
 
 body header form .search:focus {
   outline: 0;
-  background-color: #1d2046;
+  background-color: #1d2046f1;
 }
 
 body header form .search::-webkit-input-placeholder {
@@ -83,31 +83,43 @@ body header form .search::placeholder {
 }
 
 body aside {
-  background-color: #1d2046;
+  background-color: #1d2046f1;
   position: fixed;
-  padding: 1rem;
+  padding: .5rem;
   top: 5rem;
   z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   width: 100%;
 }
 
-body aside ol {
-  float: left;
+body aside #genres {
+  width: 63%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   list-style-type: none;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
 }
 
-body aside ol li {
-  margin: 0 .6rem;
-}
-
-body aside ol li a {
+body aside #genres .genre {
   color: white;
   background-color: #7700ff;
-  padding: .5rem .7rem;
-  border-radius: 80px;
+  padding: 10px 15px;
+  margin: .5rem 0.6rem;
+  border-radius: 50px;
+  cursor: pointer;
 }
 
 body main {
@@ -119,11 +131,12 @@ body main {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin: 8rem 0;
+  margin: 17rem 0;
 }
 
 body main .movie {
   width: 300px;
+  height: auto;
   margin: 1rem;
   border-radius: 3px;
   -webkit-box-shadow: 0.2px 4px 5px rgba(0, 0, 0, 0.1);

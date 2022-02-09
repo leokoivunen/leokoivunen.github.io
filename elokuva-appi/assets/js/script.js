@@ -2,10 +2,11 @@
 const API_KEY = "api_key=54cfa8fd3e538287147c85dbc892b4da";
 const BASE_URL = "https://api.themoviedb.org/3";
 const API_URL = BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY;
+// TOP RATING - const API_URL = BASE_URL + "/discover/movie/?certification_country=US&certification=R&sort_by=vote_average.desc&" + API_KEY;
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 const SEARCH_URL = BASE_URL + "/search/movie?" + API_KEY;
 
-const genre = [
+const genres = [
   {
     id: 28,
     name: "Action",
@@ -84,21 +85,53 @@ const genre = [
   },
 ];
 
-console.log(genre);
-
-// Import HTML Elements
+// Import HTML Elements into javascript
 const main = document.getElementById("main");
 const form = document.getElementById("form");
 const search = document.getElementById("search");
+const tagsEl = document.getElementById("genres");
+let selectedGenre = [];
 
 // Trigger function
+setGenre();
 getMovies(API_URL);
 
 // ===== Functions
+
+function setGenre() {
+  tagsEl.innerHTML = "";
+  genres.forEach((genre) => {
+    const tags = document.createElement("li");
+    tags.classList.add("genre");
+    tags.id = genre.id;
+    tags.innerText = genre.name;
+    tags.addEventListener("click", () => {
+      if (selectedGenre.length === 0) {
+        selectedGenre.push(genre.id);
+      } else {
+        if (selectedGenre.includes(genre.id)) {
+          selectedGenre.forEach((id, idx) => {
+            if (id === genre.id) {
+              selectedGenre.splice(idx, 1);
+            }
+          });
+        } else {
+          selectedGenre.push(genre.id);
+        }
+      }
+      console.log(selectedGenre);
+      getMovies(API_URL + "&with_genres=" + selectedGenre.join(","));
+    });
+
+    tagsEl.append(tags);
+  });
+}
+
 function getMovies(url) {
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
+      console.log(data.results);
       showMovies(data.results);
     });
 }
