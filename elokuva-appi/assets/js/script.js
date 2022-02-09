@@ -121,7 +121,7 @@ function setGenre() {
           selectedGenre.push(genre.id);
         }
       }
-      console.log(selectedGenre);
+      // console.log(selectedGenre);
       getMovies(API_URL + "&with_genres=" + selectedGenre.join(","));
       highlightSelection();
 
@@ -149,7 +149,7 @@ function getMovies(url) {
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data.results);
+      // console.log(data.results);
       showMovies(data.results);
     });
 }

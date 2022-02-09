@@ -1,9 +1,8 @@
 https://www.themoviedb.org/settings/api
+https://www.youtube.com/watch?v=_KzimS9fcM0&ab_channel=AsishGeorgeTech
 
 user: testparwawa
 salasana: fkwafiwaiFJf
 email: yedopig398@porjoton.com
 
 API key: 54cfa8fd3e538287147c85dbc892b4da
-
-tutorial: https://www.youtube.com/watch?v=_KzimS9fcM0&ab_channel=AsishGeorgeTech
