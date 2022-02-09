@@ -171,7 +171,7 @@ function showMovies(data) {
 
     <div class="overview">
       <h3>Overview</h3>
-      ${overview};
+      ${overview}
     </div>
 
     `;
