@@ -2,12 +2,25 @@ import React, { useState, useEffect } from 'react'
 import List from './List'
 import Alert from './Alert'
 
+// Get localstorage from list
+const getLocalStorage = () => {
+  let list = localStorage.getItem("list");
+  // If your list exists we want to return JSON
+  if (list) {
+    return JSON.parse(localStorage.getItem("list"));
+  }
+  // If list doesnt exist
+  else {
+    return []
+  }
+}
+
 function App() {
   // For the form
   const [name, setName] = useState('');
 
   // For the list using LocalStorage
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(getLocalStorage());
 
   // Flag if we are editing or not
   const [isEditing, setIsEditing] = useState(false);
