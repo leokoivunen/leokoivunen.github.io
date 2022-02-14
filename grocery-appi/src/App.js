@@ -32,7 +32,16 @@ function App() {
     // If name there is something in name | If im editing
     else if (name && isEditing) {
       //  deal with edit
-      
+      setList(list.map((item) => {
+        if (item.id === editID) {
+         return {...item, title: name } 
+        }
+        return item
+      }))
+      setName('');
+      setEditID(null);
+      setIsEditing(false);
+      showAlert(true, 'success', 'Edit completed!')
     }
 
     else {
@@ -70,6 +79,18 @@ function App() {
     setList(list.filter((item) => item.id !== id))
   }
 
+  // create arrow function ediItem and we are looking for id
+  const editItem = (id) => {
+    const specificItem = list.find((item) => item.id === id);
+    setIsEditing(true);
+    setEditID(id)
+    setName(specificItem.title)
+  }
+
+  useEffect(() => {
+    localStorage.setItem("list", JSON.stringify(list))
+  }, [list])
+
   // Use section and center the section then display the list
   return (
   <section className="section-center">
@@ -86,7 +107,7 @@ function App() {
     </form>
     {list.length > 0 && (
       <div className="grocery-conatiner">
-      <List items={list} removeItem = {removeItem} />
+      <List items={list} removeItem = {removeItem} editItem = {editItem} />
       <button className="clear-btn" onClick={clearList}>clear items</button>
     </div>
     )}
