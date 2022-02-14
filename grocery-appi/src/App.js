@@ -17,7 +17,7 @@ function App() {
 
   // For alert using object if show is true then alert will show but if its false by default
   // it will be hidden until we trigger the alert function
-  const [alert, setAlert] = useState({show: false, message: 'hello world', type: 'success' });
+  const [alert, setAlert] = useState({show: false, message: '', type: '' });
 
   // For handling our submit event
   const handleSubmit = (event) => {
@@ -26,14 +26,17 @@ function App() {
     // If value is empty 
     if (!name) {
       //  display alert
+      showAlert(true, "danger", "Please enter value!")
     }
 
     // If name there is something in name | If im editing
     else if (name && isEditing) {
       //  deal with edit
+      
     }
 
     else {
+      showAlert(true, "success", "Item added to the list!")
       // if everything is correct and I have some kind of value in name and Im not editing
       // Create new item with 2 properties (id, title)
       const newItem = {id: new Date().getTime().toString(), title: name};
@@ -46,11 +49,32 @@ function App() {
     }
   }
 
+  // create arrow function ShowAlert
+  const showAlert = (show = false, type = "", message = "") => {
+    setAlert({show, type, message})
+  }
+
+  // create arrow function clearList
+  const clearList = () => {
+
+    // Trigger function and set values
+    showAlert(true, "danger", "Empty list!");
+
+    // Set list = to empty array
+    setList([])
+  }
+
+  // create arrow function removeItem
+  const removeItem = (id) => {
+    showAlert(true, "danger", "Item removed!");
+    setList(list.filter((item) => item.id !== id))
+  }
+
   // Use section and center the section then display the list
   return (
   <section className="section-center">
     <form className="grocery-form" onSubmit={handleSubmit}>
-      {alert.show && <Alert/>}
+      {alert.show && <Alert {...alert} removeAlert={showAlert} />}
       <h3>grocery bud</h3>
       <div className="form-control">
         <input type="text" className="grocery" placeholder="e.g eggs" 
@@ -62,8 +86,8 @@ function App() {
     </form>
     {list.length > 0 && (
       <div className="grocery-conatiner">
-      <List items={list} />
-      <button className="clear-btn">clear items</button>
+      <List items={list} removeItem = {removeItem} />
+      <button className="clear-btn" onClick={clearList}>clear items</button>
     </div>
     )}
   </section>
