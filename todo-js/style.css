@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background-color: linear-gradient(120deg, #f6d365, #fda085);
+}
+/*# sourceMappingURL=style.css.map */
