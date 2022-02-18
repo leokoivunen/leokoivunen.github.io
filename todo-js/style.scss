@@ -4,6 +4,134 @@
   box-sizing: border-box;
 }
 
+$background-color: #282c34;
+$primary-color: #828997;
+$secondary-color: #f7e3af;
+$third-color: #31363b;
+$textbox-color: #21252b;
+
+$edit-btn: #f7e3af;
+$done-btn: #a3b09a;
+$delete-btn: #b07a83;
+
 body {
-  background-color: linear-gradient(120deg, #f6d365, #fda085);
+  background-color: $background-color;
+  font-family: "Poppins", sans-serif;
+}
+
+header {
+  padding: 1rem;
+  text-align: center;
+  margin: 10vw 0;
+
+  .text {
+    font-size: 2.5rem;
+    color: $primary-color;
+  }
+
+  p {
+    font-size: 1.6rem;
+  }
+
+  form {
+    margin: 1rem 0;
+    min-height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    input {
+      color: $secondary-color;
+      padding: 0.7rem 0.6rem;
+      font-size: 2rem;
+      border: none;
+      background-color: $third-color;
+    }
+
+    button {
+      padding: 0.7rem 0.6rem;
+      font-size: 2rem;
+      border: none;
+      background-color: white;
+    }
+
+    button {
+      color: #828997;
+      background: #21252b;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #242024;
+      color: white;
+    }
+  }
+
+  main {
+    text-align: left;
+    padding: 1rem;
+    top: 0;
+
+    .todo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .todo-list {
+        min-width: 30%;
+        list-style: none;
+
+        .todo {
+          margin: 0.5rem;
+          background: $textbox-color;
+          color: $secondary-color;
+          font-size: 1.5rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          li {
+            flex: 1;
+            margin: 0rem 1rem;
+          }
+
+          .delete-btn,
+          .complete-btn,
+          .edit-btn {
+            font-size: 1rem;
+            background: $delete-btn;
+            color: $textbox-color;
+            border: none;
+            padding: 1.2rem;
+            cursor: pointer;
+          }
+
+          .edit-btn {
+            font-size: 1rem;
+            background: $edit-btn;
+          }
+
+          .complete-btn {
+            font-size: 1rem;
+            background: $done-btn;
+          }
+        }
+      }
+    }
+  }
+}
+
+input,
+textarea,
+button {
+  outline: none;
+}
+
+.transition {
+  transition: 0.5s ease-in-out;
+}
+
+.todo-pen {
+  display: none;
 }

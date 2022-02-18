@@ -6,6 +6,146 @@
 }
 
 body {
-  background-color: linear-gradient(120deg, #f6d365, #fda085);
+  background-color: #282c34;
+  font-family: "Poppins", sans-serif;
+}
+
+header {
+  padding: 1rem;
+  text-align: center;
+  margin: 10vw 0;
+}
+
+header .text {
+  font-size: 2.5rem;
+  color: #828997;
+}
+
+header p {
+  font-size: 1.6rem;
+}
+
+header form {
+  margin: 1rem 0;
+  min-height: 10vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header form input {
+  color: #f7e3af;
+  padding: 0.7rem 0.6rem;
+  font-size: 2rem;
+  border: none;
+  background-color: #31363b;
+}
+
+header form button {
+  padding: 0.7rem 0.6rem;
+  font-size: 2rem;
+  border: none;
+  background-color: white;
+}
+
+header form button {
+  color: #828997;
+  background: #21252b;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+header form button:hover {
+  background: #242024;
+  color: white;
+}
+
+header main {
+  text-align: left;
+  padding: 1rem;
+  top: 0;
+}
+
+header main .todo-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header main .todo-container .todo-list {
+  min-width: 30%;
+  list-style: none;
+}
+
+header main .todo-container .todo-list .todo {
+  margin: 0.5rem;
+  background: #21252b;
+  color: #f7e3af;
+  font-size: 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header main .todo-container .todo-list .todo li {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin: 0rem 1rem;
+}
+
+header main .todo-container .todo-list .todo .delete-btn,
+header main .todo-container .todo-list .todo .complete-btn,
+header main .todo-container .todo-list .todo .edit-btn {
+  font-size: 1rem;
+  background: #b07a83;
+  color: #21252b;
+  border: none;
+  padding: 1.2rem;
+  cursor: pointer;
+}
+
+header main .todo-container .todo-list .todo .edit-btn {
+  font-size: 1rem;
+  background: #f7e3af;
+}
+
+header main .todo-container .todo-list .todo .complete-btn {
+  font-size: 1rem;
+  background: #a3b09a;
+}
+
+input,
+textarea,
+button {
+  outline: none;
+}
+
+.transition {
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+
+.todo-pen {
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */
