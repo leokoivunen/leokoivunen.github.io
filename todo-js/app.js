@@ -5,25 +5,30 @@ let todoButton = document.querySelector(".todo-button");
 const todoList = document.querySelector(".todo-list");
 const errorTXT = document.querySelector("p");
 
+// Asyncia varten
+function sleep(milliseconds) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+}
+
 // Kun klikkaamme nappulaa kutsumme funktiota
 todoButton.addEventListener("click", addTodo);
 
-function addTodo() {
+async function addTodo() {
   // JOS todo-inputin teksti on pienempi kuin yksi niin tulostetaan...
   if (todoInput.value < 1) {
     errorTXT.textContent = "Your input is too short.";
+    await sleep(3000);
+    errorTXT.textContent = "";
+
   } else {
     createTask();
   }
 
-  function createTask() {
+  async function createTask() {
     // Luodaan muuttuja joka kertoo että mikä elementti on lisätty todo listaan
     errorTXT.textContent = "Added to list: " + todoInput.value;
-
-    // Asyncia varten
-    function sleep(milliseconds) {
-      return new Promise((resolve) => setTimeout(resolve, milliseconds));
-    }
+    await sleep(500);
+    errorTXT.textContent = "";
 
     // Luodaan div
     const todoDiv = document.createElement("div");
