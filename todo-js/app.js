@@ -5,16 +5,13 @@ let todoButton = document.querySelector(".todo-button");
 const todoList = document.querySelector(".todo-list");
 const errorTXT = document.querySelector("p");
 
-
-// Async:ia varten
+// Async timer
 function sleep(milliseconds) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
-
 // Kun DOM lataa niin suoritetaan seuraava koodi
 // document.addEventListener("DOMContentLoaded", getTodos);
-
 
 // Kun klikkaamme nappulaa kutsumme funktiota
 todoButton.addEventListener("click", addTodo);
