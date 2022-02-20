@@ -5,12 +5,12 @@ let todoButton = document.querySelector(".todo-button");
 let todoList = document.querySelector(".todo-list");
 let errorTXT = document.querySelector("p");
 
-// Async timer
+// Lisätään async timer
 function sleep(milliseconds) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
-// Kun klikkaamme nappulaa kutsumme funktiota
+// Kun klikkaamme nappulaa kutsutaan functio ...
 todoButton.addEventListener("click", addTodo);
 
 async function addTodo() {
@@ -21,23 +21,22 @@ async function addTodo() {
     await sleep(1000);
     errorTXT.textContent = "";
   }
-  // MUUTEN kutsutaan funktiota
+  // MUUTEN kutsutaan functio
   else {
     createTask();
   }
 
-  async function createTask() {
+  function createTask() {
 
-    // Kerrotaan käyttäjälle mitä on lisätty listaan
+    // Kerrotaan käyttäjälle mitä käyttäjä on lisännyt todolistaan
     errorTXT.textContent = "Added to list: " + todoInput.value;
     
-    // Luodaan div
+    // Luodaan div elementti
     const todoDiv = document.createElement("div");
     // Lisätään div elementtiin todo class
     todoDiv.classList.add("todo");
 
-    
-    // Luodaan lista
+    // Luodaan lista elementti
     const newTodo = document.createElement("li");
     // Listan nimi
     newTodo.innerText = todoInput.value;
@@ -48,6 +47,7 @@ async function addTodo() {
 
     
     function editBtn() {
+      // luodaan nappula elementti
       const editBtn = document.createElement("button");
       // lisätään nappulan sisälle oma iconi
       editBtn.innerHTML = '<i class="fas fa-pen"></i>';
@@ -58,7 +58,10 @@ async function addTodo() {
       // Kun painetaan suoritettu nappulaa kutsutaan funktiota
       editBtn.addEventListener("click", editTask);
       async function editTask() {
-        // Asetetaan + buttoni pois näkyvistä
+        // Muokataan taskia
+        errorTXT.textContent = "Editing task name...";
+
+        // Asetetaan nappula buttoni pois näkyvistä
         todoButton.style.display = "none";
 
         // Annetaan todoinputille meidän tehtävän arvo
@@ -71,7 +74,12 @@ async function addTodo() {
         todoPen.innerHTML = '<i class="fas fa-pen"></i>';
 
         // Kun klikkaamme nappulaa niin luomme function joka tekee nämä asiat...
-        todoPen.onclick = function () {
+        todoPen.onclick = async function () {
+          // Muokataan taskia
+          errorTXT.textContent = "Name has been changed from " + newTodo.innerText + " to " + todoInput.value;
+          await sleep(1500);
+          errorTXT.textContent = "";
+
           // Piilotetaan edit kynä ja otetaan + button takaisin näkyviin
           todoPen.style.display = "none";
           todoButton.style.display = "block";
