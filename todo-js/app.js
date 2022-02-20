@@ -13,48 +13,49 @@ function sleep(milliseconds) {
 // Kun klikkaamme nappulaa kutsutaan functio ...
 todoButton.addEventListener("click", addTodo);
 
-async function addTodo() {
-  
-  // JOS todo-inputin teksti on pienempi kuin yksi niin tulostetaan...
-  if (todoInput.value < 1) {
+function addTodo(event) {
+  if (todoInput.value < 1) { // JOS todo-inputin teksti on pienempi kuin yksi niin tulostetaan...
     errorTXT.textContent = "Your input is too short.";
-    await sleep(1000);
-    errorTXT.textContent = "";
+    setTimeout(() => {
+      errorTXT.textContent = "";
+    }, 4000);
   }
-  // MUUTEN kutsutaan functio
-  else {
+  else { // MUUTEN kutsutaan functio
     createTask();
   }
 
   function createTask() {
 
-    // Kerrotaan käyttäjälle mitä käyttäjä on lisännyt todolistaan
-    errorTXT.textContent = "Added to list: " + todoInput.value;
-    
-    // Luodaan div elementti
-    const todoDiv = document.createElement("div");
-    // Lisätään div elementtiin todo class
-    todoDiv.classList.add("todo");
+    errorTXT.textContent = "Added to list: " + todoInput.value; // Mitä käyttäjä on lisännyt todolistaan
 
-    // Luodaan lista elementti
-    const newTodo = document.createElement("li");
-    // Listan nimi
-    newTodo.innerText = todoInput.value;
-    // Listään li elemnttiin todo-item class
-    newTodo.classList.add("todo-item");
-    // Lisätään divin sisälle uusi child elementti joka on li elementti
-    todoDiv.appendChild(newTodo);
+    const todoDiv = document.createElement("div"); // Luodaan div elementti
+    todoDiv.classList.add("todo"); // Lisätään div elementtiin todo class
 
-    
-    function editBtn() {
-      // luodaan nappula elementti
-      const editBtn = document.createElement("button");
-      // lisätään nappulan sisälle oma iconi
-      editBtn.innerHTML = '<i class="fas fa-pen"></i>';
-      // Lisätään button elementtiin complete-btn class
-      editBtn.classList.add("edit-btn");
-      // Lisätään divin sisälle uusi child elementti joka on button elementti
-      todoDiv.appendChild(editBtn);
+    const newTodo = document.createElement("li"); // Luodaan lista elementti
+    newTodo.innerText = todoInput.value; // Listan nimi
+    newTodo.classList.add("todo-item"); // Listään li elemnttiin todo-item class
+    todoDiv.appendChild(newTodo); // Lisätään todoDivin sisälle uusi child elementti joka on newTodo elementti
+
+
+    const editBtn = document.createElement("button"); // luodaan edit nappula
+    editBtn.innerHTML = '<i class="fas fa-pen"></i>'; // lisätään nappulan sisälle oma iconi
+    editBtn.classList.add("edit-btn"); // Lisätään nappulan elementtiin complete-btn class
+    todoDiv.appendChild(editBtn); // Lisätään todoDivin sisälle uusi child elementti joka on editBtn elementti
+
+    const completeBtn = document.createElement("button"); // Luodaan complete nappula
+    completeBtn.innerHTML = '<i class="fas fa-check"></i>'; // lisätään nappulan sisälle oma iconi
+    completeBtn.classList.add("complete-btn"); // Lisätään nappulan elementtiin complete-btn class
+    todoDiv.appendChild(completeBtn); // Lisätään todoDivin sisälle uusi child elementti joka on completeBtn elementti
+
+    const deleteBtn = document.createElement("button"); // Luodaan delete nappula
+    deleteBtn.innerHTML = '<i class="fas fa-trash"></i>'; // lisätään nappulan sisälle oma iconi
+    deleteBtn.classList.add("delete-btn"); // Lisätään nappulan elementtiin delete-btn class
+    todoDiv.appendChild(deleteBtn); // Lisätään todoDivin sisälle uusi child elementti joka on deleteBtn elementti
+
+    todoList.appendChild(todoDiv); // Näytetään html nettisivulla todoDiv joka sisältää kaikki elementit
+    todoInput.value = ""; // Tyhjennetään syöte teksti kun lisätään uusi objekti listaan
+
+/*     function editBtn() {
       // Kun painetaan suoritettu nappulaa kutsutaan funktiota
       editBtn.addEventListener("click", editTask);
       async function editTask() {
@@ -91,17 +92,9 @@ async function addTodo() {
           todoInput.value = "";
         };
       }
-    } editBtn();
+    }
 
     function completeBtn() {
-      const completeBtn = document.createElement("button");
-      // lisätään nappulan sisälle oma iconi
-      completeBtn.innerHTML = '<i class="fas fa-check"></i>';
-      // Lisätään button elementtiin complete-btn class
-      completeBtn.classList.add("complete-btn");
-      // Lisätään divin sisälle uusi child elementti joka on button elementti
-      todoDiv.appendChild(completeBtn);
-      // Kun painetaan suoritettu nappulaa kutsutaan funktiota
       completeBtn.addEventListener("click", completeTask);
       async function completeTask() {
         // Asetetaan tyylejä
@@ -111,17 +104,9 @@ async function addTodo() {
 
         await sleep(1000);
       }
-    } completeBtn();
-    
+    }
+
     function deleteBtn() {
-      const deleteBtn = document.createElement("button");
-      // lisätään nappulan sisälle oma iconi
-      deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
-      // Lisätään button elementtiin complete-btn class
-      deleteBtn.classList.add("delete-btn");
-      // Lisätään divin sisälle uusi child elementti joka on button elementti
-      todoDiv.appendChild(deleteBtn);
-      // Kun painetaan roskakori nappulaa kutsutaan funktiota
       deleteBtn.addEventListener("click", deleteItem);
 
       async function deleteItem() {
@@ -129,21 +114,12 @@ async function addTodo() {
         todoDiv.classList.add("transition");
         todoDiv.style.backgroundColor = "#b07a83";
         todoDiv.style.color = "white";
-
-        // Poistetaan localstoragesta todos
-        // removeLocalTodos(todoDiv);
-
+        
         // Poistetaan todoDiv 1000 millisekunnin jälkeen
         await sleep(1000);
         todoDiv.style.display = "none";
+        console.log(todoDiv)
       }
-    } deleteBtn();
-
-
-    // Näytetään html nettisivulla div
-    todoList.appendChild(todoDiv);
-    
-    // Tyhjennetään syöte teksti kun lisätään uusi objekti listaan
-    todoInput.value = "";
+    } */
   }
 }
