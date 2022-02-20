@@ -2,26 +2,24 @@
 let todoInput = document.querySelector(".todo-input");
 let todoPen = document.querySelector(".todo-pen");
 let todoButton = document.querySelector(".todo-button");
-const todoList = document.querySelector(".todo-list");
-const errorTXT = document.querySelector("p");
+let todoList = document.querySelector(".todo-list");
+let errorTXT = document.querySelector("p");
 
 // Async timer
 function sleep(milliseconds) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
-// Kun DOM lataa niin suoritetaan seuraava koodi
-// document.addEventListener("DOMContentLoaded", getTodos);
-
 // Kun klikkaamme nappulaa kutsumme funktiota
 todoButton.addEventListener("click", addTodo);
 
-async function addTodo() {
 
+async function addTodo() {
+  
   // JOS todo-inputin teksti on pienempi kuin yksi niin tulostetaan...
   if (todoInput.value < 1) {
     errorTXT.textContent = "Your input is too short.";
-    await sleep(3000);
+    await sleep(1000);
     errorTXT.textContent = "";
   }
   // MUUTEN kutsutaan funktiota
@@ -31,11 +29,8 @@ async function addTodo() {
 
   async function createTask() {
     
-    // Luodaan muuttuja joka kertoo että mitkä elementit on lisätty todo listaan
+    // Kerrotaan käyttäjälle mitä on lisätty listaan
     errorTXT.textContent = "Added to list: " + todoInput.value;
-    await sleep(500);
-    errorTXT.textContent = "";
-
     
     // Luodaan div
     const todoDiv = document.createElement("div");
@@ -51,10 +46,6 @@ async function addTodo() {
     newTodo.classList.add("todo-item");
     // Lisätään divin sisälle uusi child elementti joka on li elementti
     todoDiv.appendChild(newTodo);
-
-
-    // Luodaan localstorage
-    // saveLocalTodos(todoInput.value);
 
     
     function editBtn() {
@@ -144,9 +135,8 @@ async function addTodo() {
 
     // Näytetään html nettisivulla div
     todoList.appendChild(todoDiv);
-
     
-    // Tyhjennetään inputin teksti kun nappulaa painetaan
+    // Tyhjennetään syöte teksti kun lisätään uusi objekti listaan
     todoInput.value = "";
   }
 }
