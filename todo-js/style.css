@@ -121,6 +121,8 @@ header main .todo-container .todo-list {
 }
 
 header main .todo-container .todo-list .todo {
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
   margin: 0.5rem;
   background: #21252b;
   color: #f7e3af;
@@ -177,5 +179,17 @@ button {
 
 .todo-pen {
   display: none;
+}
+
+.fa-pen,
+.fa-check,
+.fa-trash {
+  pointer-events: none;
+}
+
+.completed {
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  opacity: 0.3;
 }
 /*# sourceMappingURL=style.css.map */

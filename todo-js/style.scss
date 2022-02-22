@@ -68,37 +68,6 @@ header {
     }
   }
 
-/*   .select {
-    position: relative;
-    overflow: hidden;
-    select {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      outline: none;
-      border: none;
-
-      background: $third-color;
-      color: $secondary-color;
-      width: 10em;
-      cursor: pointer;
-      padding: 1rem;
-      font-size: 20px;
-      option {
-        font-size: 1rem;
-      }
-    }
-  }
-
-  .select::after {
-    margin: 0 -3rem;
-    content: "\25BC";
-    background: $textbox-color;
-    color: $primary-color;
-    padding: 1.20rem;
-    pointer-events: none;
-  } */
-
   main {
     text-align: left;
     padding: 1rem;
@@ -114,6 +83,8 @@ header {
         list-style: none;
 
         .todo {
+          transition: 0.5s ease-in-out;
+
           margin: 0.5rem;
           background: $textbox-color;
           color: $secondary-color;
@@ -166,3 +137,15 @@ button {
 .todo-pen {
   display: none;
 }
+
+.fa-pen,
+.fa-check,
+.fa-trash {
+  pointer-events: none;
+}
+
+.completed {
+  transition: 0.5s ease-in-out;
+  opacity: 0.3;
+}
+
