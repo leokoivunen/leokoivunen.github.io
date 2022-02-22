@@ -1,4 +1,4 @@
-// Valitaan DOM
+// DOM
 const todoInput = document.querySelector(".todo-input");
 const todoPen = document.querySelector(".todo-pen");
 const todoButton = document.querySelector(".todo-button");
@@ -6,11 +6,11 @@ const todoList = document.querySelector(".todo-list");
 const errorTXT = document.querySelector("p");
 
 // Tapahtuma käsittelijät
+document.addEventListener("DOMContentLoaded", getLocalTodos);
 todoButton.addEventListener("click", addTodo);
 todoList.addEventListener("click", manageTodos);
 
-// Funktiot
-function addTodo() {
+function createTask(event) {
   // JOS todo-inputin teksti on pienempi kuin yksi
   if (todoInput.value < 1) {
     errorTXT.textContent = "Your input is too short.";
@@ -20,11 +20,11 @@ function addTodo() {
   }
   // MUUTEN kutsutaan funktio
   else {
-    createTask();
+    addTodo();
   }
 }
 
-function createTask() {
+function addTodo(event) {
   // Ohjelma kertoo mitä käyttäjä on lisännyt viimeiseksi todolistaan
   errorTXT.textContent = "Added to list: " + todoInput.value;
 
@@ -42,8 +42,11 @@ function createTask() {
 
   newTodo.classList.add("todo-item"); // lisätään li elemnttiin todo-item class
   todoDiv.appendChild(newTodo); // Lisätään todoDivin sisälle uusi child elementti joka on newTodo elementti
-  todoInput.value = ""; // Tyhjennetään syöte teksti kun lisätään uusi objekti listaan
 
+  // ADD TODO TO LOCALSTORAGE
+  saveLocalTodos(todoInput.value);
+
+  // Hallinta nappulat
   const editBtn = document.createElement("button"); // luodaan edit nappula
   editBtn.innerHTML = '<i class="fas fa-pen"></i>'; // lisätään nappulan sisälle oma iconi
   editBtn.classList.add("edit-btn"); // Lisätään nappulan elementtiin complete-btn class
@@ -60,10 +63,10 @@ function createTask() {
   todoDiv.appendChild(deleteBtn); // Lisätään todoDivin sisälle uusi child elementti joka on deleteBtn elementti
 
   todoList.appendChild(todoDiv); // Näytetään html nettisivulla todoDiv joka sisältää kaikki elementit
+  todoInput.value = ""; // Tyhjennetään syöte teksti kun lisätään uusi objekti listaan
 }
 
 function manageTodos(e) {
-  // Objekti mitä klikataan
   const item = e.target;
 
   // JOS itemin classlistissä ei ole mitään niin item saa classin delete-btn
@@ -71,6 +74,8 @@ function manageTodos(e) {
     // Luodaan uusi muuttuja joka on item parentelementti
     const todo = item.parentElement;
 
+
+    removeLocalTodos(todo)
     // Lisätään classlist transition
     todo.classList.add("transition");
     todo.style.backgroundColor = "#b07a83";
@@ -127,8 +132,8 @@ function manageTodos(e) {
     };
   }
 }
- 
-/* function saveLocalTodos(todo) {
+
+function saveLocalTodos(todo) {
   // Luodaan uusi muuttuja
   let todos;
 
@@ -151,14 +156,15 @@ function getLocalTodos() {
   // Luodaan uusi muuttuja
   let todos;
 
-  // JOS localstoragessa ei ole mitään
+  // JOS todo ei ole olemassa
   if (localStorage.getItem("todos") === null) {
     todos = [];
   }
-  // JOS localstoragessa on jotain
+  // JOS todo on jo olemassa
   else {
     todos = JSON.parse(localStorage.getItem("todos")); // Haetaan todos localstoragesta
   }
+
   // Foreach loopataan localstorage läpi
   todos.forEach(function (todo) {
     const todoDiv = document.createElement("div");
@@ -166,10 +172,11 @@ function getLocalTodos() {
 
     const newTodo = document.createElement("li");
     newTodo.innerText = todo;
+
     newTodo.classList.add("todo-item");
     todoDiv.appendChild(newTodo);
-    todoInput.value = "";
 
+    // Hallinta nappulat
     const editBtn = document.createElement("button");
     editBtn.innerHTML = '<i class="fas fa-pen"></i>';
     editBtn.classList.add("edit-btn");
@@ -184,7 +191,6 @@ function getLocalTodos() {
     deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
     deleteBtn.classList.add("delete-btn");
     todoDiv.appendChild(deleteBtn);
-
     todoList.appendChild(todoDiv);
   });
 }
@@ -210,4 +216,4 @@ function removeLocalTodos(todo) {
 
   // Kerrotaan localstoragelle tapahtuneet muutokset
   localStorage.setItem("todos", JSON.stringify(todos));
-} */
+}
