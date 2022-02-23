@@ -98,6 +98,8 @@ function manageTodos(e) {
   if (item.classList[0] === "edit-btn") {
     // Luodaan uusi muuttuja joka on itemin parentelementti eli div.todo
     const todo = item.parentElement;
+    
+    // editLocalTodos(todo)
 
     // Kerrotaan käyttäjälle että muokkaamme nimeä
     errorTXT.textContent = "Rename task ...";
@@ -217,3 +219,25 @@ function removeLocalTodos(todo) {
   // Kerrotaan localstoragelle tapahtuneet muutokset
   localStorage.setItem("todos", JSON.stringify(todos));
 }
+
+/* function editLocalTodos(todo) {
+  // Luodaan uusi muuttuja
+  let todos;
+
+  // JOS todo ei ole olemassa
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  }
+  // JOS todo on jo olemassa
+  else {
+    todos = JSON.parse(localStorage.getItem("todos")); // Haetaan todos localstoragesta
+  }
+
+  // Haetaan indexia klikatusta elementistä
+  const todoIndex = todo.children[0].innerText;
+  console.log(todoIndex)
+
+  // Kerrotaan localstoragelle tapahtuneet muutokset
+  localStorage.setItem("todos", JSON.stringify(todoIndex));
+  console.log(todoIndex)
+} */
