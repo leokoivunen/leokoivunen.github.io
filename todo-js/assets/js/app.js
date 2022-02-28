@@ -89,9 +89,11 @@ function manageTodos(e) {
 
    if (item.classList[0] === "complete-btn") {
       // Luodaan uusi muuttuja joka on itemin parentelementti eli div.todo
+     hasCompleted = false;
+
       const todo = item.parentElement;
 
-      todo.classList.toggle(completeLocalTodos(todo));
+      todo.classList.toggle(completeLocalTodos(todo, hasCompleted = true));
    }
 
    if (item.classList[0] === "edit-btn") {
@@ -197,10 +199,9 @@ function getLocalTodos() {
    });
 }
 
-function completeLocalTodos(todo, undefined) {
+function completeLocalTodos(todo, hasCompleted) {
   // Luodaan muuttujia
   let todos;
-  let hasCompleted = false;
 
   // JOS localstoragessa ei ole mitään
   if (localStorage.getItem("todos") === null) {
@@ -212,7 +213,7 @@ function completeLocalTodos(todo, undefined) {
   }
 
   // Suoritetaan toimintoja localstoragen sisalla
-  localStorage.setItem("todosCompleted", (hasCompleted));
+  localStorage.setItem("todosCompleted", hasCompleted);
   todo.classList.toggle("completed");
 
   console.log("Parent Element:", todo);
