@@ -1,49 +1,50 @@
-// Alustetaan DOM
+// DOM
 const todoInput = document.querySelector(".todo-input");
 const todoPen = document.querySelector(".todo-pen");
 const todoButton = document.querySelector(".todo-button");
 const todoList = document.querySelector(".todo-list");
 const errorTXT = document.querySelector("p");
+let taskCompleted = false;
 
 // Tapahtuma käsittelijät
 document.addEventListener("DOMContentLoaded", getLocalTodos);
 todoButton.addEventListener("click", createTask);
 todoList.addEventListener("click", manageTodos);
 
-function createTask(e) {
-   // JOS todo-inputin teksti on pienempi kuin yksi
+function createTask(event) {
    if (todoInput.value < 1) {
+      // jos syötteen teksti on pienempi kuin yksi
       errorTXT.textContent = "Your input is too short.";
       setTimeout(() => {
          errorTXT.textContent = "";
       }, 2000);
-   }
-   // MUUTEN kutsutaan funktio
-   else {
+   } else {
       addTodo();
-   }
+   } // kutsutaan funktiota
 }
 
 function addTodo(event) {
-   // Ohjelma kertoo mitä käyttäjä on lisännyt viimeiseksi todolistaan
+   // tulostetaan se mitä käyttäjä lisäsi listaan
    errorTXT.textContent = "Added to list: " + todoInput.value;
 
-   // Tyhjennetään tieto mitä ohjelma on kertonut 4000 millisekunnin päästä
+   // odotetaan 4000 ms ja sit tehdään jotain
    setTimeout(() => {
       errorTXT.textContent = "";
    }, 4000);
 
-   // Luodaan muuttuja
+   // luodaan uusi div
    const todoDiv = document.createElement("div");
-   todoDiv.classList.add("todo");
+   todoDiv.classList.add("todo"); // lisätään diviin class: todo
 
-   const newTodo = document.createElement("li"); // Luodaan lista elementti
-   newTodo.innerText = todoInput.value; // Listan nimi
+   // luodaan uusi lista
+   const newTodo = document.createElement("li");
+   newTodo.innerText = todoInput.value; // listan nimi
+   newTodo.classList.add("todo-item"); //lisätään listaan class: todo-item
 
-   newTodo.classList.add("todo-item"); // lisätään li elemnttiin todo-item class
-   todoDiv.appendChild(newTodo); // Lisätään todoDivin sisälle uusi child elementti joka on newTodo elementti
+   // lisätään divin sisälle uusi child elementti joka on lista elementti
+   todoDiv.appendChild(newTodo);
 
-   // ADD TODO TO LOCALSTORAGE
+   // tallenetaan syöte localstorageen
    saveLocalTodos(todoInput.value);
 
    // Hallinta nappulat
@@ -66,41 +67,44 @@ function addTodo(event) {
    todoInput.value = ""; // Tyhjennetään syöte teksti kun lisätään uusi objekti listaan
 }
 
-function manageTodos(e) {
-   // Haetaan joka ikisen itemin arvo jota klikataan .todo-list sisällä
-   const item = e.target;
+function manageTodos(event) {
+   // haetaan joka ikisen elementin arvo jota klikataan .todo-list sisällä ja alusteaan se muuttujaksi item
+   const item = event.target;
 
-   // JOS itemin classlistissä ei ole mitään niin item saa classin delete-btn
+   // jos itemin classlistissä ei ole mitään niin item saa classin delete-btn
    if (item.classList[0] === "delete-btn") {
-      // Luodaan uusi muuttuja joka on item parentelementti
+      // luodaan uusi muuttuja joka on item parentelementti
       const todo = item.parentElement;
 
+      // poistetaan todo
       removeLocalTodos(todo);
-      // Lisätään classlist transition
+
+      // lisätään classlist transition
       todo.classList.add("transition");
       todo.style.backgroundColor = "#b07a83";
       todo.style.color = "white";
 
-      // Käytetään setTimeout funktiota jonka avulla voimme odottaa {1000ms = 3s}
+      // odotetaan 1000 ms ja sit tehdään jotain
       setTimeout(() => {
-         todo.remove();
+         todo.remove(); // poistetaan todo
       }, 1000);
    }
 
    if (item.classList[0] === "complete-btn") {
-      // Luodaan uusi muuttuja joka on itemin parentelementti eli div.todo
-     hasCompleted = false;
+      taskCompleted = !taskCompleted;
 
       const todo = item.parentElement;
 
-      todo.classList.toggle(completeLocalTodos(todo, hasCompleted = true));
+      console.log(taskCompleted);
+
+      todo.classList.toggle("completed");
+
+      todo.classList.toggle(completeLocalTodos(todo));
    }
 
    if (item.classList[0] === "edit-btn") {
-      // Luodaan uusi muuttuja joka on itemin parentelementti eli div.todo
+      // luodaan uusi muuttuja joka on item parentelementti
       const todo = item.parentElement;
-
-      // editLocalTodos(todo)
 
       // Kerrotaan käyttäjälle että muokkaamme nimeä
       errorTXT.textContent = "Rename task ...";
@@ -122,7 +126,11 @@ function manageTodos(e) {
          let item = todo.children[0];
 
          // Asetetetaan errortekstiin entinen arvo ja muutettu arvo
-         errorTXT.textContent = "Name has been changed from " + item.textContent + " to " + todoInput.value;
+         errorTXT.textContent =
+            "Name has been changed from " +
+            item.textContent +
+            " to " +
+            todoInput.value;
 
          // Muutetaan arvoa eli itemin uusi arvo on nyt syöte johon käyttäjä syöttää uuden nimen
          item.textContent = todoInput.value;
@@ -169,6 +177,12 @@ function getLocalTodos() {
       todos = JSON.parse(localStorage.getItem("todos")); // Haetaan todos localstoragesta
    }
 
+   if (taskCompleted === true) {
+      console.log("Hey");
+   } else if (taskCompleted === false) {
+      console.log("Test");
+   }
+
    // Foreach loopataan localstorage läpi
    todos.forEach(function (todo) {
       const todoDiv = document.createElement("div");
@@ -199,25 +213,21 @@ function getLocalTodos() {
    });
 }
 
-function completeLocalTodos(todo, hasCompleted) {
-  // Luodaan muuttujia
-  let todos;
+function completeLocalTodos(todo) {
+   // Luodaan muuttujia
+   let todos;
 
-  // JOS localstoragessa ei ole mitään
-  if (localStorage.getItem("todos") === null) {
-     todos = [];
-  }
-  // JOS localstoragessa on jotain
-  else {
-     todos = JSON.parse(localStorage.getItem("todos")); // Haetaan todos localstoragesta
-  }
+   // JOS localstoragessa ei ole mitään
+   if (localStorage.getItem("todos") === null) {
+      todos = [];
+   }
+   // JOS localstoragessa on jotain
+   else {
+      todos = JSON.parse(localStorage.getItem("todos")); // Haetaan todos localstoragesta
+   }
 
-  // Suoritetaan toimintoja localstoragen sisalla
-  localStorage.setItem("todosCompleted", hasCompleted);
-  todo.classList.toggle("completed");
-
-  console.log("Parent Element:", todo);
-  console.log("Local Storage: ", todos);
+   // Suoritetaan toimintoja localstoragen sisalla
+   localStorage.setItem("todos_completed", taskCompleted);
 }
 
 function removeLocalTodos(todo) {
@@ -242,25 +252,3 @@ function removeLocalTodos(todo) {
    // Kerrotaan localstoragelle tapahtuneet muutokset
    localStorage.setItem("todos", JSON.stringify(todos));
 }
-
-/* function editLocalTodos(todo) {
-  // Luodaan uusi muuttuja
-  let todos;
-
-  // JOS todo ei ole olemassa
-  if (localStorage.getItem("todos") === null) {
-    todos = [];
-  }
-  // JOS todo on jo olemassa
-  else {
-    todos = JSON.parse(localStorage.getItem("todos")); // Haetaan todos localstoragesta
-  }
-
-  // Haetaan indexia klikatusta elementistä
-  const todoIndex = todo.children[0].innerText;
-  console.log(todoIndex)
-
-  // Kerrotaan localstoragelle tapahtuneet muutokset
-  localStorage.setItem("todos", JSON.stringify(todoIndex));
-  console.log(todoIndex)
-} */
