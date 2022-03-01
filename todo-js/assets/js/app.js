@@ -141,6 +141,7 @@ function manageTodos(event) {
             todoInput.value = "";
          }, 3000);
 
+         // Need to be fixed when second item is renamed and added to list it will not replace the first item with second item new name
          localStorage.setItem("todos", JSON.stringify([item.textContent]));
 
       };
@@ -170,18 +171,14 @@ function saveLocalTodos(todo) {
 function getLocalTodos() {
    // Luodaan uusi muuttuja
    let todos;
-   let completed;
 
    // JOS todo ei ole olemassa
    if (localStorage.getItem("todos") === null) {
       todos = [];
-      completed = [];
    }
    // JOS todo on jo olemassa
    else {
       todos = JSON.parse(localStorage.getItem("todos")); // Haetaan todos localstoragesta
-
-      completed = JSON.parse(localStorage.getItem("completed-task"));
    }
 
    // Foreach loopataan localstorage läpi
@@ -217,18 +214,14 @@ function getLocalTodos() {
 function completeLocalTodos(todo) {
    // Luodaan muuttujia
    let todos;
-   let completed;
 
    // JOS localstoragessa ei ole mitään
    if (localStorage.getItem("todos") === null) {
       todos = [];
-      completed = [];
    }
    // JOS localstoragessa on jotain
    else {
-      todos = JSON.parse(localStorage.getItem("todos"));
-
-      completed = JSON.parse(localStorage.getItem("completed-task"));
+      todos = JSON.parse(localStorage.getItem("todos")); // Haetaan todos localstoragesta
    }
 
    // Suoritetaan toimintoja localstoragen sisalla
@@ -238,8 +231,6 @@ function completeLocalTodos(todo) {
 function removeLocalTodos(todo) {
    // Luodaan uusi muuttuja
    let todos;
-   let completed;
-   // luodaan rayyaa.
    // JOS localstoragessa ei ole mitään
    if (localStorage.getItem("todos") === null) {
       todos = [];
