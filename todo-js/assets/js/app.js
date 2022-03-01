@@ -4,7 +4,7 @@ const todoPen = document.querySelector(".todo-pen");
 const todoButton = document.querySelector(".todo-button");
 const todoList = document.querySelector(".todo-list");
 const errorTXT = document.querySelector("p");
-let taskCompleted = false;
+let taskCompleted;
 
 // Tapahtuma käsittelijät
 document.addEventListener("DOMContentLoaded", getLocalTodos);
@@ -175,12 +175,6 @@ function getLocalTodos() {
    // JOS todo on jo olemassa
    else {
       todos = JSON.parse(localStorage.getItem("todos")); // Haetaan todos localstoragesta
-   }
-
-   if (taskCompleted === true) {
-      console.log("Hey");
-   } else if (taskCompleted === false) {
-      console.log("Test");
    }
 
    // Foreach loopataan localstorage läpi
