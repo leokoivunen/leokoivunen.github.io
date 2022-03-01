@@ -1,4 +1,4 @@
-// DOM
+// Alustetaan DOM
 const todoInput = document.querySelector(".todo-input");
 const todoPen = document.querySelector(".todo-pen");
 const todoButton = document.querySelector(".todo-button");
@@ -7,10 +7,10 @@ const errorTXT = document.querySelector("p");
 
 // Tapahtuma käsittelijät
 document.addEventListener("DOMContentLoaded", getLocalTodos);
-todoButton.addEventListener("click", addTodo);
+todoButton.addEventListener("click", createTask);
 todoList.addEventListener("click", manageTodos);
 
-function createTask(event) {
+function createTask(e) {
    // JOS todo-inputin teksti on pienempi kuin yksi
    if (todoInput.value < 1) {
       errorTXT.textContent = "Your input is too short.";
