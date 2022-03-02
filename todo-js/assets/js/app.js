@@ -4,6 +4,7 @@ const todoPen = document.querySelector(".todo-pen");
 const todoButton = document.querySelector(".todo-button");
 const todoList = document.querySelector(".todo-list");
 const errorTXT = document.querySelector("p");
+
 let taskCompleted;
 
 // Tapahtuma käsittelijät
@@ -143,7 +144,6 @@ function manageTodos(event) {
 
          // Need to be fixed when second item is renamed and added to list it will not replace the first item with second item new name
          localStorage.setItem("todos", JSON.stringify([item.textContent]));
-
       };
    }
 }
