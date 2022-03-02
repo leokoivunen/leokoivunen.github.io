@@ -11,8 +11,8 @@ let taskCompleted;
 document.addEventListener("DOMContentLoaded", getLocalTodos);
 todoButton.addEventListener("click", createTask);
 todoList.addEventListener("click", manageTodos);
-
-function createTask(event) {
+    
+    function createTask(event) {
    if (todoInput.value < 1) {
       // jos syötteen teksti on pienempi kuin yksi
       errorTXT.textContent = "Your input is too short.";
@@ -22,9 +22,9 @@ function createTask(event) {
    } else {
       addTodo();
    } // kutsutaan funktiota
-}
-
-function addTodo(event) {
+ }
+    
+    function addTodo(event) {
    // tulostetaan se mitä käyttäjä lisäsi listaan
    errorTXT.textContent = "Added to list: " + todoInput.value;
 
@@ -66,9 +66,9 @@ function addTodo(event) {
 
    todoList.appendChild(todoDiv); // Näytetään html nettisivulla todoDiv joka sisältää kaikki elementit
    todoInput.value = ""; // Tyhjennetään syöte teksti kun lisätään uusi objekti listaan
-}
-
-function manageTodos(event) {
+ }
+    
+    function manageTodos(event) {
    // haetaan joka ikisen elementin arvo jota klikataan .todo-list sisällä ja alusteaan se muuttujaksi item
    const item = event.target;
 
@@ -146,9 +146,9 @@ function manageTodos(event) {
          localStorage.setItem("todos", JSON.stringify([item.textContent]));
       };
    }
-}
-
-function saveLocalTodos(todo) {
+ }
+    
+    function saveLocalTodos(todo) {
    // Luodaan uusi muuttuja
    let todos;
 
@@ -166,9 +166,9 @@ function saveLocalTodos(todo) {
 
    // Pusketaan todos takaisin localstorageen
    localStorage.setItem("todos", JSON.stringify(todos));
-}
-
-function getLocalTodos() {
+ }
+    
+    function getLocalTodos() {
    // Luodaan uusi muuttuja
    let todos;
 
@@ -209,9 +209,9 @@ function getLocalTodos() {
       todoDiv.appendChild(deleteBtn);
       todoList.appendChild(todoDiv);
    });
-}
-
-function completeLocalTodos(todo) {
+ }
+    
+    function completeLocalTodos(todo) {
    // Luodaan muuttujia
    let todos;
 
@@ -226,9 +226,9 @@ function completeLocalTodos(todo) {
 
    // Suoritetaan toimintoja localstoragen sisalla
    localStorage.setItem("todos_completed", taskCompleted);
-}
-
-function removeLocalTodos(todo) {
+ }
+    
+    function removeLocalTodos(todo) {
    // Luodaan uusi muuttuja
    let todos;
    // JOS localstoragessa ei ole mitään
@@ -248,4 +248,4 @@ function removeLocalTodos(todo) {
 
    // Kerrotaan localstoragelle tapahtuneet muutokset
    localStorage.setItem("todos", JSON.stringify(todos));
-}
+ }
